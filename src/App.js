@@ -13,7 +13,9 @@ class App extends Component {
   componentDidMount() {
     const contactsData = localStorage.getItem('contacts');
     const savedContacts = JSON.parse(contactsData);
-    this.setState({ contacts: savedContacts });
+    if (savedContacts) {
+      this.setState({ contacts: savedContacts });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -66,6 +68,7 @@ class App extends Component {
           onFilterOut={this.resetFilter}
           filterValue={filter}
         />
+
         <ContactList
           contactsData={filteredContacts}
           onDeleteBtn={this.deleteContact}
