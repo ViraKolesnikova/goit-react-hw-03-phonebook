@@ -3,6 +3,7 @@ import { Component } from 'react';
 import Form from './components/Form';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
+import { saveToLS, getFromLS } from './utils/localStorage';
 
 class App extends Component {
   state = {
@@ -11,8 +12,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const contactsData = localStorage.getItem('contacts');
-    const savedContacts = JSON.parse(contactsData);
+    const savedContacts = getFromLS('contacts');
+    console.log(savedContacts);
     if (savedContacts) {
       this.setState({ contacts: savedContacts });
     }
@@ -20,7 +21,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts.length !== this.state.contacts.length) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      saveToLS('contacts', this.state.contacts);
     }
   }
 
