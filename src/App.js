@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount() {
     const savedContacts = getFromLS('contacts');
-    console.log(savedContacts);
+
     if (savedContacts) {
       this.setState({ contacts: savedContacts });
     }

@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 
 import s from './Form.module.css';
 
+const initialState = {
+  name: '',
+  number: '',
+};
+
 export default class Form extends Component {
   nameID = shortid.generate();
   numberID = shortid.generate();
@@ -19,12 +24,7 @@ export default class Form extends Component {
     ).isRequired,
   };
 
-  initialState = {
-    name: '',
-    number: '',
-  };
-
-  state = this.initialState;
+  state = initialState;
 
   updateState = event => {
     const { name, value } = event.target;
@@ -49,7 +49,7 @@ export default class Form extends Component {
   };
 
   reset = () => {
-    this.setState(this.initialState);
+    this.setState(initialState);
   };
 
   checkContactIdentity = () => {
